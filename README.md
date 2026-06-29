@@ -1,15 +1,9 @@
 # Baie Vivante et Solidaire
 
-
-{% for post in site.posts %}	
-    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-    <p><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} . <a href="{{ post.url }}"></a></small></p>			
-{% endfor %}	
-
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ post.url }}">{{ post.date | date: "%B %e, %Y" }} {{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>

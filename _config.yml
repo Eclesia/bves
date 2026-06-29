@@ -6,3 +6,11 @@ plugins:
 title: Baie Vivante et Solidaire
 description: Baie Vivante et Solidaire est une association du territoire de la Baie du Cotentin
 remote_theme: hydecorp/hydejack@v9.2.1
+
+menu:
+  - title: Posts
+    url:   /blog/
+  - title: Projects
+    url:   /projects/
+  - title: About
+    url:   /about/

@@ -1,7 +1,4 @@
----
-layout: welcome
-title:  Welcome
----
+
 
 # Baie Vivante et Solidaire
 

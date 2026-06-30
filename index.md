@@ -1,4 +1,6 @@
-
+---
+layout: home
+---
 
 # Baie Vivante et Solidaire
 

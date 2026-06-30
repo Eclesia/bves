@@ -7,10 +7,14 @@ title: Baie Vivante et Solidaire
 description: Baie Vivante et Solidaire est une association du territoire de la Baie du Cotentin
 remote_theme: hydecorp/hydejack@v9.2.1
 
-author:
-  name:  Johann Sorel (Site)
+#uthor:
+#  name:  Johann Sorel (Site)
     
     
+#collections:
+#  featured_categories:
+#    permalink:         /projects/
+#    output:            true
     
 accent_image:          /assets/img/jlaswilson-blue-tit-1401043.jpg
 accent_color:          rgb(79,177,186)

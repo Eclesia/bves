@@ -1,9 +1,10 @@
 ---
 layout: page
-title: About
+title: Contact
 permalink: /about/
 feature-img: "assets/img/pexels/travel.jpeg"
 tags: [Page]
+position: 3
 ---
 
 Type on Strap is based on Type Theme, a free and open-source theme for [Jekyll](http://jekyllrb.com/), licensed under the MIT License.

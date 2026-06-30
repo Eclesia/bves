@@ -24,8 +24,22 @@ concurrency:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-22.04, ubuntu-24.04, ubuntu-26.04, ubuntu-22.04-arm, ubuntu-24.04-arm, ubuntu-26.04-arm, macos-15-intel, macos-14 ]
+        ruby: []
+    runs-on: ${{ matrix.os }}
     steps:
+      - name: Set platform
+        id: platform
+        run: |
+          platform=${{ matrix.os }}
+          platform=${platform/macos-15-intel/darwin-x64}
+          platform=${platform/macos-14/darwin-arm64}
+          platform=${platform/%.04/.04-x64}
+          platform=${platform/%.04-arm/.04-arm64}
+          echo "platform=$platform" >> $GITHUB_OUTPUT
       - name: Checkout
         uses: actions/checkout@v4
         with:

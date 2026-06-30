@@ -2,78 +2,68 @@
 plugins:
   - jekyll-remote-theme
   
-lang: fr
-title: Baie Vivante et Solidaire
-description: Baie Vivante et Solidaire est une association du territoire de la Baie du Cotentin
-remote_theme: hydecorp/hydejack@v9.2.1
+# theme: type-on-strap                                  # if using the theme as a jekyll theme gem
+remote_theme: sylhare/Type-on-Strap                     # If using as a remote_theme in github
 
-#uthor:
-#  name:  Johann Sorel (Site)
-    
-    
-#collections:
-#  featured_categories:
-#    permalink:         /projects/
-#    output:            true
-    
-accent_image:          /assets/img/jlaswilson-blue-tit-1401043.jpg
-accent_color:          rgb(79,177,186)
-theme_color:           rgb(25,55,71)
 
-google_fonts:          false
+# THEME-SPECIFIC CONFIGURATION
+title: Baie Vivante et Solidaire                        # site's title
+description: "Baie Vivante et Solidaire est une association du territoire de la Baie du Cotentin"      # used by search engines
+avatar: assets/img/logo_bves.png                         # Empty for no avatar in navbar
+favicon: assets/favicon.ico                             # Icon displayed in the tab
 
-hydejack:
-  post_addons:         [about, newsletter, related, random, comments]
-  project_addons:      [about, newsletter, other, comments]
+# Header and footer text
+header_text: Change <code>header_text</code> in <code>_config.yml</code>  # Change Blog header text
+header_feature_image: assets/img/header/mesange.jpg
+header_feature_image_responsive: true
+footer_text: >
+  Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
-  no_mark_external:    false
-  no_push_state:       false
-  no_drawer:           false
-  no_navbar:           false
-  no_search:           false
-  no_inline_css:       false
-  no_page_style:       false
-  no_break_layout:     true
-  no_toc:              false
-  no_third_column:     false
-  no_large_headings:   false
-  no_structured_data:  false
-  no_theme_color:      false
-  no_breadcrumbs:      false
+# Blog
+excerpt: true                                           # Or "truncate" (first 250 characters), "false" to disable
+post_navigation: true
+color_image: /assets/img/lineart.png                    # A bit transparent for color posts.
 
-  use_lsi:             true
-  cookies_banner:      true
-  advertise:           true
-  hide_dates:          false
-  hide_last_modified:  false
+# Features
+# More in the _data folder for comments, share buttons, author and language
+# For layout customization, go to the "_sass > base" folder, and check "_variables.scss"
+katex: true                                             # Enable if using math markup
+mermaid: default                                        # Enable mermaid-js for diagrams, use theme: base, forest, dark, default, neutral
+google_analytics:                                       # Measurement ID, e.g. "G-00000"
+cookie_consent: false                                   # To respect the usage of cookies
+color_theme: auto                                       # auto, dark or light
 
-  dark_mode:
-    always:            false
-    dynamic:           true
-    sunrise:           6
-    sunset:            18
-    icon:              true
+# PAGINATION
+paginate: 5
+paginate_path: "/blog/page:num"
 
-optional_front_matter:
-  remove_originals:    true
+# PORTFOLIO
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:name
 
-readme_index:
-  remove_originals:    true
-  with_frontmatter:    true
-
-relative_links:
-  collections:         true
-
-titles_from_headings:
-  strip_title:         true
-  collections:         true
-
-compress_html:
-  comments:            ["<!-- ", " -->"]
-  clippings:           all
-  endings:             all
-  ignore:
-    envs:              [development]
-
+# BUILD SETTINGS
 sass:
-  style:               compressed
+  style: compressed
+  quiet_deps: true
+plugins: [jekyll-paginate, jekyll-seo-tag, jekyll-feed]
+exclude:
+  - ".idea"
+  - ".jekyll-cache"
+  - ".jekyll-metadata"
+  - ".sass-cache"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "type-on-strap.gemspec"
+  - "vendor"
+  - "node_modules"
+  - "assets/node_modules"
+  - "assets/Dockerfile"
+  - "package.json"
+  - "package-lock.json"
+  - "README.md"
+  - "LICENSE"
+  - ".github"
+  - "test-results"
+

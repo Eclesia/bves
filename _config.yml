@@ -9,19 +9,8 @@ remote_theme: hydecorp/hydejack@v9.2.1
 
 author:
   name:  Johann Sorel (Site)
-
-menu:
-  - title: About
-    url:   /about/
     
     
-collections:
-  featured_categories:
-    permalink:         /:name/
-    output:            true
-  featured_tags:
-    permalink:         /tag-:name/
-    output:            true
     
 accent_image:          /assets/img/jlaswilson-blue-tit-1401043.jpg
 accent_color:          rgb(79,177,186)

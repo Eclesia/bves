@@ -1,3 +1,9 @@
+---
+layout: welcome
+title:  Welcome
+cover:  true
+---
+
 # Baie Vivante et Solidaire
 
 

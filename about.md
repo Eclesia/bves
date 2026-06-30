@@ -1,3 +1,7 @@
+---
+layout: about
+title:  About
+---
 
 ## Classification
 
@@ -10,3 +14,5 @@ Canton de Carentan les Marais - CC de la Baie du Cotentin
 ## Contact 
 
 https://www.facebook.com/BaieVivanteSolidaire/
+
+<!--author-->

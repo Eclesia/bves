@@ -1,3 +1,6 @@
+# SITE CONFIGURATION
+baseurl: "/bves"
+url: "https://eclesia.github.io"
 
 #plugins:
 #  - jekyll-remote-theme
@@ -13,8 +16,8 @@ avatar: assets/img/logo_bves.png                         # Empty for no avatar i
 favicon: assets/favicon.ico                             # Icon displayed in the tab
 
 # Header and footer text
-header_text: Change <code>header_text</code> in <code>_config.yml</code>  # Change Blog header text
-header_feature_image: assets/img/header/mesange.jpg
+header_text: "Le cotentin au quotidien"  # Change Blog header text
+header_feature_image: assets/img/header/mesange2.jpg
 header_feature_image_responsive: true
 footer_text: >
   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
@@ -34,8 +37,8 @@ cookie_consent: false                                   # To respect the usage o
 color_theme: auto                                       # auto, dark or light
 
 # PAGINATION
-#paginate: 3
-#paginate_path: "/blog/page:num"
+paginate: 5
+paginate_path: "/blog/page:num"
 
 # PORTFOLIO
 collections:
@@ -47,7 +50,7 @@ collections:
 sass:
   style: compressed
   quiet_deps: true
-plugins: [jekyll-paginate-v2, jekyll-seo-tag, jekyll-feed]
+plugins: [jekyll-paginate, jekyll-seo-tag, jekyll-feed]
 exclude:
   - ".idea"
   - ".jekyll-cache"
@@ -66,4 +69,3 @@ exclude:
   - "LICENSE"
   - ".github"
   - "test-results"
-

@@ -1,16 +1,19 @@
 {{ define "main" }}
+{{ $h := .Params.hero }}
 <section class="hero"><div class="wrap">
   <div>
-    <h1>Agir ensemble, au cœur du Cotentin.</h1>
-    <p>Baie Vivante Solidaire rassemble les habitants autour de l’alimentation, de la culture, de l’environnement et du débat citoyen.</p>
-    <a class="btn main" href="{{ "evenements/" | relLangURL }}">Voir les événements</a><a class="btn ghost" href="{{ "association/" | relLangURL }}">Découvrir l’association</a>
+    <h1>{{ $h.title }}</h1>
+    <p>{{ $h.text }}</p>
+    <a class="btn main" href="{{ $h.primary.url | relLangURL }}">{{ $h.primary.label }}</a><a class="btn ghost" href="{{ $h.secondary.url | relLangURL }}">{{ $h.secondary.label }}</a>
   </div>
-  <img class="hero-seasons" src="{{ "img/seasons.svg" | relURL }}" alt="Une année en Cotentin : un arbre qui change de couleur au fil des saisons, une vache qui broute, de la pluie et un poisson qui saute dans la mer" width="420" height="440">
+  <img class="hero-seasons" src="{{ "img/seasons.svg" | relURL }}" alt="{{ $h.image_alt }}" width="420" height="440">
 </div></section>
 
-<section class="sec"><div class="wrap">
-  <h2>Nos actions</h2>
-  <p class="lead">Quatre domaines, des actions ouvertes à tous.</p>
+{{ with .Content }}<section class="sec"><div class="wrap narrow"><div class="prose">{{ . }}</div></div></section>{{ end }}
+
+<section class="sec{{ if .Content }} alt{{ end }}"><div class="wrap">
+  <h2>{{ .Params.actions.title }}</h2>
+  <p class="lead">{{ .Params.actions.intro }}</p>
   <div class="cards">
     {{ range (site.GetPage "/actions").Sections }}
       <article class="card cat-{{ .Params.cat }}"><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ .Description }}</p><ul class="mini">{{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul></article>
@@ -18,18 +21,18 @@
   </div>
 </div></section>
 
-<section class="sec alt"><div class="wrap">
-  <h2>Prochains événements</h2>
-  <p class="lead">Ouverts à toutes et à tous, adhérents ou non.</p>
+<section class="sec{{ if not .Content }} alt{{ end }}"><div class="wrap">
+  <h2>{{ .Params.events.title }}</h2>
+  <p class="lead">{{ .Params.events.intro }}</p>
   {{ $evs := where site.RegularPages "Section" "evenements" }}
   {{ $up := where $evs "Date" "ge" now }}
   {{ if not $up }}{{ $up = $evs }}{{ end }}
   <ul class="events">{{ range first 4 $up.ByDate }}{{ partial "event-row.html" . }}{{ end }}</ul>
-  <p><a class="btn green" href="{{ "evenements/" | relLangURL }}">Tout l’agenda</a></p>
+  <p><a class="btn green" href="{{ "evenements/" | relLangURL }}">{{ .Params.events.button }}</a></p>
 </div></section>
 
 <section class="join"><div class="wrap">
-  <div><h2>Rejoignez l’association</h2><p>Donnez un peu de temps, adhérez ou soutenez nos actions.</p></div>
-  <a class="btn main" href="{{ "association/" | relLangURL }}">Nous rejoindre</a>
+  <div><h2>{{ .Params.join.title }}</h2><p>{{ .Params.join.text }}</p></div>
+  <a class="btn main" href="{{ .Params.join.button.url | relLangURL }}">{{ .Params.join.button.label }}</a>
 </div></section>
 {{ end }}

@@ -46,3 +46,7 @@ disableKinds = ["RSS", "taxonomy"]
   name = "L’association"
   pageRef = "/association"
   weight = 30
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

@@ -3,17 +3,3 @@ content:
     label: Actions
     type: collection
     path: content/actions
-    fields:
-      - name: title
-        type: string
-      - name: body
-        type: rich-text
-  - name: events
-    label: Evenements
-    type: collection
-    path: content/evenements
-    fields:
-      - name: title
-        type: string
-      - name: body
-        type: rich-text

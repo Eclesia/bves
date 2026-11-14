@@ -1,11 +1,281 @@
-media: content
+# Pages CMS : https://pagescms.org
+# Gère le site Hugo « Baie Vivante Solidaire » (textes, images, documents).
+
+media:
+  - name: images
+    label: Images
+    input: assets/uploads/images          # Hugo les redimensionne (assets/)
+    output: /uploads/images
+    categories: [image]
+    rename: safe
+  - name: documents
+    label: Documents (PDF…)
+    input: static/uploads/documents       # servis tels quels (static/)
+    output: /uploads/documents
+    categories: [document]
+    rename: safe
+  - name: content
+    label: Images dans les textes
+    input: static/uploads/content
+    output: /uploads/content
+    categories: [image]
+    rename: safe
+
+settings:
+  content:
+    merge: true   # conserve les clés non gérées ici (ex. « resources: » des dossiers existants)
+
+components:
+  cover:
+    type: image
+    label: Image de couverture
+    description: Remplace l’image `cover.jpg` éventuellement présente dans le dossier de la page.
+    options:
+      media: images
+      extensions: [jpg, jpeg, png, webp]
+  documents:
+    type: object
+    label: Documents à télécharger
+    description: S’ajoutent aux fichiers déjà présents dans le dossier de la page.
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - name: title
+        label: Titre affiché
+        type: string
+        required: true
+      - name: file
+        label: Fichier
+        type: file
+        required: true
+        options:
+          media: documents
+          categories: [document]
+  link:
+    type: object
+    fields:
+      - name: label
+        label: Texte du bouton
+        type: string
+        required: true
+      - name: url
+        label: Lien
+        type: string
+        required: true
+        description: "Ex. /evenements/ ou /association/"
+  body:
+    type: rich-text
+    label: Texte
+    options:
+      format: markdown
+      media: content
+      rename: safe
+
 content:
+  # ------------------------------------------------------------------ Pages
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: home
+        label: Accueil
+        type: file
+        path: content/_index.md
+        format: yaml-frontmatter
+        operations: { rename: false, delete: false }
+        fields:
+          - { name: title, label: Titre de la page, type: string, required: true }
+          - { name: description, label: Description (moteurs de recherche), type: text }
+          - name: hero
+            label: Bandeau d’accueil
+            type: object
+            fields:
+              - { name: title, label: Titre, type: string, required: true }
+              - { name: text, label: Texte, type: text }
+              - { name: primary, label: Bouton principal, component: link }
+              - { name: secondary, label: Bouton secondaire, component: link }
+              - { name: image_alt, label: Description de l’illustration animée, type: text }
+          - name: actions
+            label: Section « Actions »
+            type: object
+            fields:
+              - { name: title, label: Titre, type: string }
+              - { name: intro, label: Introduction, type: text }
+          - name: events
+            label: Section « Événements »
+            type: object
+            fields:
+              - { name: title, label: Titre, type: string }
+              - { name: intro, label: Introduction, type: text }
+              - { name: button, label: Texte du bouton, type: string }
+          - name: join
+            label: Bandeau « Rejoignez-nous »
+            type: object
+            fields:
+              - { name: title, label: Titre, type: string }
+              - { name: text, label: Texte, type: text }
+              - { name: button, label: Bouton, component: link }
+          - { name: body, component: body, label: Texte de bienvenue }
+
+      - name: association
+        label: L’association
+        type: file
+        path: content/association.md
+        format: yaml-frontmatter
+        operations: { rename: false, delete: false }
+        fields:
+          - { name: title, label: Titre, type: string, required: true }
+          - { name: description, label: Description, type: text }
+          - { name: body, component: body }
+
+      - name: actions-index
+        label: Page « Nos actions »
+        type: file
+        path: content/actions/_index.md
+        format: yaml-frontmatter
+        operations: { rename: false, delete: false }
+        fields:
+          - { name: title, label: Titre, type: string, required: true }
+          - { name: description, label: Description, type: text }
+
+      - name: events-index
+        label: Page « Événements »
+        type: file
+        path: content/evenements/_index.md
+        format: yaml-frontmatter
+        operations: { rename: false, delete: false }
+        fields:
+          - { name: title, label: Titre, type: string, required: true }
+          - { name: description, label: Description, type: text }
+
+  # ---------------------------------------------------------------- Actions
   - name: actions
     label: Actions
-    type: collection
-    path: content/actions
+    type: group
+    items:
+      - name: actions-culturelles
+        label: Culturelles
+        type: collection
+        path: content/actions/culturelles
+        format: yaml-frontmatter
+        subfolders: true
+        exclude: ["_index.md", "**/*.jpg", "**/*.jpeg", "**/*.png", "**/*.pdf"]
+        filename:
+          template: "{primary}/index.md"
+          field: create
+        view: &action_view
+          layout: tree
+          node:
+            filename: index.md
+            hideDirs: others
+          primary: title
+          fields: [title, description]
+          sort: [title]
+        fields: &action_fields
+          - { name: title, label: Titre, type: string, required: true }
+          - { name: description, label: Résumé (1 à 2 phrases), type: text, required: true, options: { maxlength: 220 } }
+          - { name: cover, component: cover }
+          - { name: image_alt, label: Description de l’image (accessibilité), type: string }
+          - { name: documents, component: documents }
+          - { name: body, component: body }
+      - name: actions-environnementales
+        label: Environnementales
+        type: collection
+        path: content/actions/environnementales
+        format: yaml-frontmatter
+        subfolders: true
+        exclude: ["_index.md", "**/*.jpg", "**/*.jpeg", "**/*.png", "**/*.pdf"]
+        filename: { template: "{primary}/index.md", field: create }
+        view: *action_view
+        fields: *action_fields
+      - name: actions-alimentaires
+        label: Alimentaires
+        type: collection
+        path: content/actions/alimentaires
+        format: yaml-frontmatter
+        subfolders: true
+        exclude: ["_index.md", "**/*.jpg", "**/*.jpeg", "**/*.png", "**/*.pdf"]
+        filename: { template: "{primary}/index.md", field: create }
+        view: *action_view
+        fields: *action_fields
+      - name: actions-politiques
+        label: Politiques
+        type: collection
+        path: content/actions/politiques
+        format: yaml-frontmatter
+        subfolders: true
+        exclude: ["_index.md", "**/*.jpg", "**/*.jpeg", "**/*.png", "**/*.pdf"]
+        filename: { template: "{primary}/index.md", field: create }
+        view: *action_view
+        fields: *action_fields
+
+  # -------------------------------------------------------------- Événements
   - name: evenements
-    label: Evenements
+    label: Événements
     type: collection
     path: content/evenements
-    filename: "{year}-{month}-{day}-{primary}/index.md"
+    format: yaml-frontmatter
+    subfolders: true
+    exclude: ["_index.md", "**/*.jpg", "**/*.jpeg", "**/*.png", "**/*.pdf"]
+    # La date est le préfixe du dossier : AAAA-MM-JJ-titre/index.md
+    filename:
+      template: "{date}-{primary}/index.md"
+      field: create
+    view:
+      layout: tree
+      node:
+        filename: index.md
+        hideDirs: others
+      primary: title
+      fields: [title, date, lieu, categories]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Titre, type: string, required: true }
+      - name: date
+        label: Date de l’événement
+        type: date
+        required: true
+        default: ""
+        description: >-
+          Doit correspondre au préfixe du dossier (AAAA-MM-JJ).
+          Pour changer la date plus tard, renommez aussi le dossier.
+        options: { format: yyyy-MM-dd }
+      - { name: heure, label: Heure, type: string, description: "Ex. 18 h 30" }
+      - { name: lieu, label: Lieu, type: string }
+      - name: categories
+        label: Catégories
+        type: select
+        required: true
+        description: La première catégorie donne la couleur de l’événement.
+        options:
+          multiple: true
+          min: 1
+          max: 3
+          values: [Culture, Environnement, Alimentation, Politique, Musique]
+      - { name: description, label: Résumé (1 à 2 phrases), type: text, required: true, options: { maxlength: 220 } }
+      - { name: cover, component: cover }
+      - { name: image_alt, label: Description de l’image (accessibilité), type: string }
+      - { name: documents, component: documents }
+      - { name: body, component: body }
+
+  # ------------------------------------------------------------------ Site
+  - name: site
+    label: Réglages du site
+    type: file
+    path: hugo.toml
+    format: toml
+    operations: { rename: false, delete: false }
+    fields:
+      - { name: title, label: Nom du site, type: string, required: true }
+      - name: params
+        label: Informations générales
+        type: object
+        fields:
+          - { name: tagline, label: Sous-titre (en-tête), type: string }
+          - { name: description, label: Description du site, type: text }
+          - { name: facebook, label: Lien Facebook, type: string }

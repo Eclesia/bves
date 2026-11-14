@@ -1,4 +1,4 @@
-media: content
+media: content/evenements/*/
 content:
   - name: actions
     label: Actions

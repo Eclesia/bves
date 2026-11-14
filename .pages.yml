@@ -1,0 +1,10 @@
+content:
+  - name: actions
+    label: Actions
+    type: collection
+    path: content/actions
+    fields:
+      - name: title
+        type: string
+      - name: body
+        type: rich-text

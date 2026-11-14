@@ -1,6 +1,11 @@
-media: content/evenements/*/
+media: content
 content:
   - name: actions
     label: Actions
     type: collection
     path: content/actions
+  - name: evenements
+    label: Evenements
+    type: collection
+    path: content/evenements
+    filename: "{year}-{month}-{day}-{primary}/index.md"

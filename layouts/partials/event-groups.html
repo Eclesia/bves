@@ -1,0 +1,4 @@
+{{ range .ByDate.GroupByDate "2006-01" "asc" }}
+<h2 class="month">{{ (index .Pages 0).Date | time.Format "January 2006" | title }}</h2>
+<ul class="events">{{ range .Pages }}{{ partial "event-row.html" . }}{{ end }}</ul>
+{{ end }}

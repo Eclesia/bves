@@ -1,0 +1,5 @@
+{{ $here := . }}
+<div class="filters" role="navigation" aria-label="Filtrer par thème">
+  <a href="{{ "evenements/" | relLangURL }}"{{ if eq $here ("evenements/" | relLangURL) }} aria-current="page"{{ end }}>Tous</a>
+  {{ range $name, $_ := site.Taxonomies.categories }}{{ $u := printf "categories/%s/" ($name | urlize) | relLangURL }}<a href="{{ $u }}"{{ if eq $here $u }} aria-current="page"{{ end }}>{{ $name | title }}</a>{{ end }}
+</div>

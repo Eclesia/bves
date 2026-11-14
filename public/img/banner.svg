@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bannière : la baie, le bocage, un phare et des habitants main dans la main">
+<style>
+.blob,.ring,.spin{transform-box:fill-box;transform-origin:center}
+.blob{animation:float 9s ease-in-out infinite alternate}
+.ring{animation:breathe 7s ease-in-out infinite alternate}
+.spin{animation:spin 90s linear infinite}
+.cloud{animation:drift 40s ease-in-out infinite alternate}
+.w1{animation:wave 9s linear infinite}.w2{animation:wave 13s linear infinite reverse}.w3{animation:wave 18s linear infinite}
+.bird{animation:fly 22s ease-in-out infinite alternate}
+.p{animation:bob 2.6s ease-in-out infinite;animation-delay:var(--d)}
+.b1,.b2{animation:beam 8s ease-in-out infinite}.b2{animation-delay:-4s}
+.lamp{animation:glow 4s ease-in-out infinite alternate}
+@keyframes float{to{transform:translate(-10px,8px) rotate(-3deg)}}
+@keyframes breathe{to{transform:scale(1.04)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{to{transform:translateX(80px)}}
+@keyframes wave{to{transform:translateX(-240px)}}
+@keyframes fly{to{transform:translate(140px,-24px)}}
+@keyframes bob{50%{transform:translateY(-5px)}}
+@keyframes beam{0%{opacity:0}25%{opacity:.38}50%,100%{opacity:0}}
+@keyframes glow{from{opacity:.7}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c7a46"/><stop offset=".6" stop-color="#288d51"/><stop offset="1" stop-color="#3aa563"/></linearGradient></defs>
+<rect width="1440" height="440" fill="url(#sky)"/>
+<g transform="translate(1030 150)">
+  <path class="blob" d="M-110 -20C-120 -90 -20 -120 90 -90C120 -30 60 40 -30 55C-80 62 -108 30 -110 -20Z" fill="#2ab1c7"/>
+  <circle class="ring" r="96" fill="none" stroke="#f6e8a0" stroke-width="14"/>
+  <circle class="spin" r="124" fill="none" stroke="#f6e8a0" stroke-width="3" stroke-dasharray="4 12" opacity=".55"/>
+</g>
+<g fill="#fff" opacity=".18"><g class="cloud"><ellipse cx="820" cy="95" rx="70" ry="16"/><ellipse cx="865" cy="84" rx="45" ry="14"/></g><g class="cloud" style="animation-duration:55s"><ellipse cx="1240" cy="55" rx="80" ry="15"/><ellipse cx="1195" cy="66" rx="50" ry="12"/></g></g>
+<g class="bird" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".85"><path transform="translate(860 120)" d="M0 0q8 -9 16 0q8 -9 16 0"/><path transform="translate(905 142) scale(.7)" d="M0 0q8 -9 16 0q8 -9 16 0"/></g>
+<path d="M0 300C180 250 360 250 560 285S900 330 1100 280S1350 250 1440 270V440H0Z" fill="#1f7a47"/>
+<path d="M0 340C220 290 460 300 700 335S1100 370 1440 315V440H0Z" fill="#2b9556"/>
+<path d="M1060 362C1110 340 1170 342 1230 352L1190 376C1140 368 1100 372 1066 378Z" fill="#e3c96b" opacity=".55"/>
+<path d="M880 372C930 356 990 358 1040 368L1000 388C960 382 920 384 886 390Z" fill="#7dc58a" opacity=".5"/>
+<g fill="none" stroke="#1b6a3d" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 10" opacity=".8"><path d="M1060 362C1110 340 1170 342 1230 352"/><path d="M880 372C930 356 990 358 1040 368"/><path d="M1240 350C1280 340 1320 338 1360 344"/></g>
+<g><polygon class="b1" points="1330,217 1060,150 1060,285" fill="#f6e8a0" opacity=".15"/><polygon class="b2" points="1330,217 1440,185 1440,250" fill="#f6e8a0" opacity=".15"/>
+<polygon points="1316,330 1344,330 1338,230 1322,230" fill="#f2f6f1"/><polygon points="1320,292 1340,292 1339,262 1321,262" fill="#2ab1c7"/>
+<rect x="1314" y="226" width="32" height="5" fill="#0f3326"/><rect class="lamp" x="1324" y="208" width="12" height="18" fill="#f6e8a0"/><path d="M1320 208L1330 195L1340 208Z" fill="#0f3326"/></g>
+<path d="M870 338C910 328 950 330 1010 338" fill="none" stroke="#f6e8a0" stroke-width="2.5" opacity=".9"/>
+<g transform="translate(880 358)"><g class="p" style="--d:0.0s"><circle cy="-40" r="7" fill="#f6e8a0"/><path d="M-8 0q0 -26 8 -26q8 0 8 26z" fill="#f6e8a0"/></g></g>
+<g transform="translate(910 358)"><g class="p" style="--d:0.25s"><circle cy="-40" r="7" fill="#2ab1c7"/><path d="M-8 0q0 -26 8 -26q8 0 8 26z" fill="#2ab1c7"/></g></g>
+<g transform="translate(940 358)"><g class="p" style="--d:0.5s"><circle cy="-40" r="7" fill="#f2f6f1"/><path d="M-8 0q0 -26 8 -26q8 0 8 26z" fill="#f2f6f1"/></g></g>
+<g transform="translate(970 358)"><g class="p" style="--d:0.75s"><circle cy="-40" r="7" fill="#e3a72a"/><path d="M-8 0q0 -26 8 -26q8 0 8 26z" fill="#e3a72a"/></g></g>
+<g transform="translate(1000 358)"><g class="p" style="--d:1.0s"><circle cy="-40" r="7" fill="#f6e8a0"/><path d="M-8 0q0 -26 8 -26q8 0 8 26z" fill="#f6e8a0"/></g></g>
+<g><path class="w1" d="M0 385 q60 -22 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 V440 H0 Z" fill="#2ab1c7" opacity=".85"/><path class="w2" d="M0 402 q60 -22 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 V440 H0 Z" fill="#1e93a8"/><path class="w3" d="M0 420 q60 -22 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 V440 H0 Z" fill="#14697a"/></g>
+</svg>

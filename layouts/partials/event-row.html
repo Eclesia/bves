@@ -1,0 +1,5 @@
+<li class="event cat-{{ index .Params.categories 0 | urlize }}" data-date="{{ .Date.Format "2006-01-02" }}">
+  <div class="date">{{ .Date.Format "02" }}<small>{{ .Date | time.Format "Jan" }}</small></div>
+  <div><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ with .Params.heure }}{{ . }} · {{ end }}{{ .Params.lieu }}</p></div>
+  {{ partial "tags.html" . }}
+</li>

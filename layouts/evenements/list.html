@@ -1,0 +1,9 @@
+{{ define "main" }}
+<section class="page"><div class="wrap">
+  {{ partial "breadcrumb.html" . }}
+  <h1>{{ .Title }}</h1>
+  <p class="lead">{{ .Description }}</p>
+  {{ partial "filters.html" .RelPermalink }}
+  {{ partial "event-groups.html" .Pages }}
+</div></section>
+{{ end }}

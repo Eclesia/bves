@@ -1,0 +1,48 @@
+baseURL = "https://www.example.org/"
+title = "Baie Vivante Solidaire"
+locale = "fr"
+defaultContentLanguage = "fr"
+buildFuture = true            # les événements à venir sont publiés
+disableKinds = ["RSS", "taxonomy"]
+
+[taxonomies]
+  category = "categories"
+
+[params]
+  tagline = "Association du Cotentin"
+  description = "Association solidaire du Cotentin : alimentation, culture, environnement et débat citoyen."
+  facebook = "https://www.facebook.com/BaieVivanteSolidaire/"
+
+[[menus.main]]
+  identifier = "actions"
+  name = "Actions"
+  pageRef = "/actions"
+  weight = 10
+[[menus.main]]
+  name = "Culturelles"
+  pageRef = "/actions/culturelles"
+  parent = "actions"
+  weight = 1
+[[menus.main]]
+  name = "Environnementales"
+  pageRef = "/actions/environnementales"
+  parent = "actions"
+  weight = 2
+[[menus.main]]
+  name = "Alimentaires"
+  pageRef = "/actions/alimentaires"
+  parent = "actions"
+  weight = 3
+[[menus.main]]
+  name = "Politiques"
+  pageRef = "/actions/politiques"
+  parent = "actions"
+  weight = 4
+[[menus.main]]
+  name = "Événements"
+  pageRef = "/evenements"
+  weight = 20
+[[menus.main]]
+  name = "L’association"
+  pageRef = "/association"
+  weight = 30

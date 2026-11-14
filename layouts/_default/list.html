@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section class="page cat-{{ .Params.cat }}"><div class="wrap">
+  {{ partial "breadcrumb.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  {{ range .Sections }}
+    <div class="group cat-{{ .Params.cat }}">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p class="muted">{{ .Description }}</p>
+      <div class="cards">{{ range .Pages }}{{ partial "card.html" . }}{{ end }}</div>
+    </div>
+  {{ end }}
+  {{ if not .Sections }}<div class="cards">{{ range .Pages }}{{ partial "card.html" . }}{{ end }}</div>{{ end }}
+</div></section>
+{{ end }}

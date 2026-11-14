@@ -1,0 +1,8 @@
+{{ define "main" }}
+<section class="page cat-{{ .Title | urlize }}"><div class="wrap">
+  <nav class="crumbs" aria-label="Fil d’Ariane"><a href="{{ "/" | relURL }}">Accueil</a><a href="{{ "evenements/" | relLangURL }}">Événements</a><span>{{ .Title }}</span></nav>
+  <h1>Événements : {{ .Title }}</h1>
+  {{ partial "filters.html" .RelPermalink }}
+  {{ partial "event-groups.html" .Pages }}
+</div></section>
+{{ end }}

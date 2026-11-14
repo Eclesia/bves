@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article class="page cat-{{ index .Params.categories 0 | urlize }}"><div class="wrap narrow">
+  <nav class="crumbs" aria-label="Fil d’Ariane"><a href="{{ "/" | relURL }}">Accueil</a><a href="{{ "evenements/" | relLangURL }}">Événements</a><span>{{ .Title }}</span></nav>
+  <p>{{ partial "tags.html" . }}</p>
+  <h1>{{ .Title }}</h1>
+  <p class="lead">{{ .Description }}</p>
+  <dl class="facts">
+    <div><dt>Date</dt><dd>{{ .Date | time.Format "Monday 2 January 2006" }}</dd></div>
+    {{ with .Params.heure }}<div><dt>Heure</dt><dd>{{ . }}</dd></div>{{ end }}
+    {{ with .Params.lieu }}<div><dt>Lieu</dt><dd>{{ . }}</dd></div>{{ end }}
+  </dl>
+  <div class="prose">{{ .Content }}</div>
+  <p><a class="btn green" href="{{ "evenements/" | relLangURL }}">Tous les événements</a></p>
+</div></article>
+{{ end }}

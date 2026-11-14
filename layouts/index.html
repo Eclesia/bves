@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>Agir ensemble, au cœur du Cotentin.</h1>
+    <p>Baie Vivante Solidaire rassemble les habitants autour de l’alimentation, de la culture, de l’environnement et du débat citoyen.</p>
+    <a class="btn main" href="{{ "evenements/" | relLangURL }}">Voir les événements</a><a class="btn ghost" href="{{ "association/" | relLangURL }}">Découvrir l’association</a>
+  </div>
+  <img class="hero-seasons" src="{{ "img/seasons.svg" | relURL }}" alt="Une année en Cotentin : un arbre qui change de couleur au fil des saisons, une vache qui broute, de la pluie et un poisson qui saute dans la mer" width="420" height="440">
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <h2>Nos actions</h2>
+  <p class="lead">Quatre domaines, des actions ouvertes à tous.</p>
+  <div class="cards">
+    {{ range (site.GetPage "/actions").Sections }}
+      <article class="card cat-{{ .Params.cat }}"><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ .Description }}</p><ul class="mini">{{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul></article>
+    {{ end }}
+  </div>
+</div></section>
+
+<section class="sec alt"><div class="wrap">
+  <h2>Prochains événements</h2>
+  <p class="lead">Ouverts à toutes et à tous, adhérents ou non.</p>
+  {{ $evs := where site.RegularPages "Section" "evenements" }}
+  {{ $up := where $evs "Date" "ge" now }}
+  {{ if not $up }}{{ $up = $evs }}{{ end }}
+  <ul class="events">{{ range first 4 $up.ByDate }}{{ partial "event-row.html" . }}{{ end }}</ul>
+  <p><a class="btn green" href="{{ "evenements/" | relLangURL }}">Tout l’agenda</a></p>
+</div></section>
+
+<section class="join"><div class="wrap">
+  <div><h2>Rejoignez l’association</h2><p>Donnez un peu de temps, adhérez ou soutenez nos actions.</p></div>
+  <a class="btn main" href="{{ "association/" | relLangURL }}">Nous rejoindre</a>
+</div></section>
+{{ end }}

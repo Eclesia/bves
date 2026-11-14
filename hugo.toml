@@ -5,6 +5,9 @@ defaultContentLanguage = "fr"
 buildFuture = true            # les événements à venir sont publiés
 disableKinds = ["RSS", "taxonomy"]
 
+[frontmatter]
+  date = [":filename", ":default"]   # 2026-11-22-nom/ => date de l’événement
+
 [taxonomies]
   category = "categories"
 

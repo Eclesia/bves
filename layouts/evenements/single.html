@@ -9,7 +9,9 @@
     {{ with .Params.heure }}<div><dt>Heure</dt><dd>{{ . }}</dd></div>{{ end }}
     {{ with .Params.lieu }}<div><dt>Lieu</dt><dd>{{ . }}</dd></div>{{ end }}
   </dl>
+  {{ partial "cover.html" . }}
   <div class="prose">{{ .Content }}</div>
+  {{ partial "downloads.html" . }}
   <p><a class="btn green" href="{{ "evenements/" | relLangURL }}">Tous les événements</a></p>
 </div></article>
 {{ end }}

@@ -1,0 +1,2 @@
+{{ $files := where .Resources "ResourceType" "ne" "image" }}
+{{ with $files }}<section class="downloads"><h2>Documents à télécharger</h2><ul>{{ range . }}<li><a href="{{ .RelPermalink }}" download>{{ with .Title }}{{ . }}{{ else }}{{ .Name }}{{ end }}</a> <span class="ext">{{ path.Ext .Name | strings.TrimPrefix "." | upper }}</span></li>{{ end }}</ul></section>{{ end }}

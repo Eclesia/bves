@@ -1,5 +1,8 @@
-<li class="event cat-{{ index .Params.categories 0 | urlize }}" data-date="{{ .Date.Format "2006-01-02" }}">
-  <div class="date">{{ .Date.Format "02" }}<small>{{ .Date | time.Format "Jan" }}</small></div>
+{{ $s := .Date }}{{ $e := $s }}{{ with .Params.date_fin }}{{ $e = time . }}{{ end }}
+{{ $same := eq ($s.Format "2006-01-02") ($e.Format "2006-01-02") }}{{ $month := eq ($s.Format "2006-01") ($e.Format "2006-01") }}
+{{ $cover := partial "get-cover.html" . }}
+<li class="event cat-{{ index .Params.categories 0 | urlize }}{{ if $cover }} has-cover{{ end }}"{{ with $cover }}{{ $b := .Fill "900x180 q60" }} style="{{ printf "--cover:url('%s')" $b.RelPermalink | safeCSS }}"{{ end }}>
+  <div class="date{{ if not $same }} range{{ end }}">{{ if $same }}{{ $s.Format "02" }}<small>{{ $s | time.Format "Jan" }}</small>{{ else if $month }}{{ $s.Format "02" }}–{{ $e.Format "02" }}<small>{{ $s | time.Format "Jan" }}</small>{{ else }}{{ $s.Format "02" }}<small>{{ $s | time.Format "Jan" }}</small><span class="to">→ {{ $e.Format "02" }} {{ $e | time.Format "Jan" }}</span>{{ end }}</div>
   <div><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ with .Params.heure }}{{ . }} · {{ end }}{{ .Params.lieu }}</p></div>
   {{ partial "tags.html" . }}
 </li>

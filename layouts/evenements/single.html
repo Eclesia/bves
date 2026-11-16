@@ -5,7 +5,7 @@
   <h1>{{ .Title }}</h1>
   <p class="lead">{{ .Description }}</p>
   <dl class="facts">
-    <div><dt>Date</dt><dd>{{ .Date | time.Format "Monday 2 January 2006" }}</dd></div>
+    <div><dt>{{ if .Params.date_fin }}Dates{{ else }}Date{{ end }}</dt><dd>{{ partial "event-when.html" . }}</dd></div>
     {{ with .Params.heure }}<div><dt>Heure</dt><dd>{{ . }}</dd></div>{{ end }}
     {{ with .Params.lieu }}<div><dt>Lieu</dt><dd>{{ . }}</dd></div>{{ end }}
   </dl>

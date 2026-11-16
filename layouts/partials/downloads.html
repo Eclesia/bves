@@ -1,2 +1,7 @@
-{{ $files := where .Resources "ResourceType" "ne" "image" }}
-{{ with $files }}<section class="downloads"><h2>Documents à télécharger</h2><ul>{{ range . }}<li><a href="{{ .RelPermalink }}" download>{{ with .Title }}{{ . }}{{ else }}{{ .Name }}{{ end }}</a> <span class="ext">{{ path.Ext .Name | strings.TrimPrefix "." | upper }}</span></li>{{ end }}</ul></section>{{ end }}
+{{ $files := slice }}
+{{ range .Resources }}{{ if not (strings.HasPrefix .Name "cover") }}{{ $files = $files | append . }}{{ end }}{{ end }}
+{{ $docs := .Params.documents }}
+{{ if or $files $docs }}<section class="downloads"><h2>Fichiers à télécharger</h2><ul>
+{{ range $files }}<li><a href="{{ .RelPermalink }}" download>{{ with .Title }}{{ . }}{{ else }}{{ .Name }}{{ end }}</a>{{ with path.Ext .Name }}<span class="ext">{{ strings.TrimPrefix "." . | upper }}</span>{{ end }}</li>{{ end }}
+{{ range $docs }}<li><a href="{{ .file | relURL }}" download>{{ with .title }}{{ . }}{{ else }}{{ path.Base $.file }}{{ end }}</a>{{ with path.Ext .file }}<span class="ext">{{ strings.TrimPrefix "." . | upper }}</span>{{ end }}</li>{{ end }}
+</ul></section>{{ end }}

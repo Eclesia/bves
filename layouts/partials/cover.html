@@ -1,1 +1,1 @@
-{{ with .Resources.GetMatch "cover*" }}{{ $i := .Fill "1000x525 q80" }}<figure class="cover"><img src="{{ $i.RelPermalink }}" alt="{{ with $.Params.image_alt }}{{ . }}{{ else }}Illustration : {{ $.Title }}{{ end }}" width="{{ $i.Width }}" height="{{ $i.Height }}"></figure>{{ end }}
+{{ with partial "get-cover.html" . }}{{ $i := .Fill "1000x525 q80" }}<figure class="cover"><img src="{{ $i.RelPermalink }}" alt="{{ with $.Params.image_alt }}{{ . }}{{ else }}Illustration : {{ $.Title }}{{ end }}" width="{{ $i.Width }}" height="{{ $i.Height }}"></figure>{{ end }}

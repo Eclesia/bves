@@ -1,18 +1,15 @@
 {{ define "main" }}
-<article class="page cat-{{ .CurrentSection.Params.cat }}"><div class="wrap narrow">
+<article class="page"><div class="wrap narrow">
   {{ partial "breadcrumb.html" . }}
   <h1>{{ .Title }}</h1>
   {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  {{ if and (eq .Section "actions") (not .Date.IsZero) }}<p class="meta">Action en cours depuis le {{ .Date | time.Format "2 January 2006" }}</p>{{ end }}
   {{ partial "cover.html" . }}
   <div class="prose">{{ .Content }}</div>
   {{ partial "downloads.html" . }}
   {{ if eq .Section "actions" }}
-    {{ $others := where .CurrentSection.Pages "Permalink" "ne" .Permalink }}
-    {{ with $others }}<h2 class="sub-h">Dans le même domaine</h2><div class="cards">{{ range . }}{{ partial "card.html" . }}{{ end }}</div>{{ end }}
-    {{ $ev := where site.RegularPages "Section" "evenements" }}
-    {{ $cat := .CurrentSection.Params.cat }}
-    {{ $rel := where $ev "Params.categories" "intersect" (slice ($cat | title)) }}
-    {{ with $rel }}<h2 class="sub-h">Prochains événements liés</h2><ul class="events">{{ range first 3 .ByDate }}{{ partial "event-row.html" . }}{{ end }}</ul>{{ end }}
+    {{ $others := where (where site.RegularPages "Section" "actions") "Permalink" "ne" .Permalink }}
+    {{ with first 3 $others.ByDate.Reverse }}<h2 class="sub-h">Autres actions</h2><div class="cards">{{ range . }}{{ partial "card.html" . }}{{ end }}</div>{{ end }}
   {{ end }}
 </div></article>
 {{ end }}

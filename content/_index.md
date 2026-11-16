@@ -5,13 +5,14 @@ description: "Association solidaire du Cotentin : alimentation, culture, environ
 hero:
   title: "Agir ensemble, au cœur du Cotentin."
   text: "Baie Vivante Solidaire rassemble les habitants autour de l’alimentation, de la culture, de l’environnement et du débat citoyen."
-  primary:   { label: "Voir les événements",        url: "/evenements/" }
-  secondary: { label: "Découvrir l’association",    url: "/association/" }
+  primary:   { label: "Voir les événements",        url: "./evenements/" }
+  secondary: { label: "Découvrir l’association",    url: "./association/" }
   image_alt: "Une année en Cotentin : un arbre qui change de couleur au fil des saisons, une vache qui broute, de la pluie et un poisson qui saute dans la mer"
 
 actions:
   title: "Nos actions"
   intro: "Quatre domaines, des actions ouvertes à tous."
+  button: "Toutes les actions"
 
 events:
   title: "Prochains événements"
@@ -21,7 +22,7 @@ events:
 join:
   title: "Rejoignez l’association"
   text: "Donnez un peu de temps, adhérez ou soutenez nos actions."
-  button: { label: "Nous rejoindre", url: "/association/" }
+  button: { label: "Nous rejoindre", url: "./association/" }
 ---
 ## Bienvenue
 

@@ -1,0 +1,2 @@
+{{ $cur := "" }}
+{{ range . }}{{ $m := .Date.Format "2006-01" }}{{ if ne $m $cur }}{{ if $cur }}</ul>{{ end }}<h3 class="month">{{ .Date | time.Format "January 2006" | title }}</h3><ul class="events">{{ $cur = $m }}{{ end }}{{ partial "event-row.html" . }}{{ end }}{{ if $cur }}</ul>{{ end }}

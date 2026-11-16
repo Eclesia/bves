@@ -1,0 +1,3 @@
+{{ $img := .Resources.GetMatch "cover*" }}
+{{ with .Params.cover }}{{ with resources.Get (strings.TrimPrefix "/" .) }}{{ $img = . }}{{ end }}{{ end }}
+{{ return $img }}

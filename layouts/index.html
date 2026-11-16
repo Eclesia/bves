@@ -14,20 +14,15 @@
 <section class="sec{{ if .Content }} alt{{ end }}"><div class="wrap">
   <h2>{{ .Params.actions.title }}</h2>
   <p class="lead">{{ .Params.actions.intro }}</p>
-  <div class="cards">
-    {{ range (site.GetPage "/actions").Sections }}
-      <article class="card cat-{{ .Params.cat }}"><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ .Description }}</p><ul class="mini">{{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul></article>
-    {{ end }}
-  </div>
+  <div class="cards">{{ range first 5 (where site.RegularPages "Section" "actions").ByDate.Reverse }}{{ partial "card.html" . }}{{ end }}</div>
+  <p><a class="btn green" href="{{ "actions/" | relLangURL }}">{{ .Params.actions.button }}</a></p>
 </div></section>
 
 <section class="sec{{ if not .Content }} alt{{ end }}"><div class="wrap">
   <h2>{{ .Params.events.title }}</h2>
   <p class="lead">{{ .Params.events.intro }}</p>
   {{ $evs := where site.RegularPages "Section" "evenements" }}
-  {{ $up := where $evs "Date" "ge" now }}
-  {{ if not $up }}{{ $up = $evs }}{{ end }}
-  <ul class="events">{{ range first 4 $up.ByDate }}{{ partial "event-row.html" . }}{{ end }}</ul>
+  {{ range first 5 $evs.ByDate.Reverse }}{{ partial "event-row.html" . }}{{ end }}</ul>
   <p><a class="btn green" href="{{ "evenements/" | relLangURL }}">{{ .Params.events.button }}</a></p>
 </div></section>
 

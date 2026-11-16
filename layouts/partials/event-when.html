@@ -1,0 +1,7 @@
+{{ $s := .Date }}{{ $e := $s }}{{ with .Params.date_fin }}{{ $e = time . }}{{ end }}
+{{ $r := "" }}
+{{ if eq ($s.Format "2006-01-02") ($e.Format "2006-01-02") }}{{ $r = $s | time.Format "Monday 2 January 2006" }}
+{{ else if eq ($s.Format "2006-01") ($e.Format "2006-01") }}{{ $r = printf "Du %s au %s" ($s | time.Format "Monday 2") ($e | time.Format "Monday 2 January 2006") }}
+{{ else if eq ($s.Format "2006") ($e.Format "2006") }}{{ $r = printf "Du %s au %s" ($s | time.Format "Monday 2 January") ($e | time.Format "Monday 2 January 2006") }}
+{{ else }}{{ $r = printf "Du %s au %s" ($s | time.Format "Monday 2 January 2006") ($e | time.Format "Monday 2 January 2006") }}{{ end }}
+{{ return $r }}

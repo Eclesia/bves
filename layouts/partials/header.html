@@ -1,7 +1,7 @@
 {{ $cur := . }}
 <header class="top"><div class="wrap">
 <nav aria-label="Navigation principale">
-  <a class="brand" href="{{ "/" | relURL }}"><img src="{{ "img/logo.jpg" | relURL }}" alt="" width="52" height="52"><span>{{ site.Title }}<small>{{ site.Params.tagline }}</small></span></a>
+  <a class="brand" href="{{ "./" | relURL }}"><img src="{{ "img/logo.jpg" | relURL }}" alt="" width="52" height="52"><span>{{ site.Title }}<small>{{ site.Params.tagline }}</small></span></a>
   <ul class="menu">
   {{ range site.Menus.main }}
     <li{{ if .HasChildren }} class="has-sub"{{ end }}>

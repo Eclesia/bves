@@ -17,8 +17,5 @@
 <main id="contenu">{{ block "main" . }}{{ end }}</main>
 {{ partial "footer.html" . }}
 {{ $js := resources.Get "js/theme.js" | minify }}<script>{{ $js.Content | safeJS }}</script>
-<script>
-(function(){var t=new Date().toISOString().slice(0,10);document.querySelectorAll('.event[data-date]').forEach(function(e){if(e.dataset.date<t)e.classList.add('past')})})();
-</script>
 </body>
 </html>
